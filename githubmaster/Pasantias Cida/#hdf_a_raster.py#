@@ -1,0 +1,26 @@
+import gdal
+hdf_file = gdal.Open("3B43.20140501.7.HDF") # 3b43 rainfall dataset
+
+subDatasets = hdf_file.GetSubDatasets()
+
+subDatasets 
+>>> [('HDF4_SDS:UNKNOWN:"3B43.20140501.7.HDF":0', '[1440x400] precipitation (32-bit floating-point)'), ('HDF4_SDS:UNKNOWN:"3B43.20140501.7.HDF":1', '[1440x400] relativeError (32-bit floating-point)'), ('HDF4_SDS:UNKNOWN:"3B43.20140501.7.HDF":2', '[1440x400] gaugeRelativeWeighting (8-bit integer)')]
+
+# Open precipitation
+# prcp = gdal.Open('HDF4_SDS:UNKNOWN:"3B43.20140501.7.HDF":0')
+# or the following shortcut:
+prcp = gdal.Open(subDatasets[0][0])
+prcp.ReadAsArray(
+array([[ 0.055     ,  0.07040323,  0.04701613, ...,  0.06721774,
+         0.07008065,  0.07181452],
+       [ 0.06096774,  0.07983872,  0.09064516, ...,  0.07157258,
+         0.07733872,  0.07399193],
+       [ 0.0703629 ,  0.08100805,  0.09028225, ...,  0.07931452,
+         0.08270162,  0.08221775],
+       ..., 
+       [ 0.04266129,  0.02157258,  0.03274193, ...,  0.08129031,
+         0.07431452,  0.07338709],
+       [ 0.0278629 ,  0.02370968,  0.04048387, ...,  0.07133064,
+         0.07189515,  0.07112902],
+       [ 0.03225806,  0.03040322,  0.03907258, ...,  0.0716129 ,
+         0.07233871,  0.07262

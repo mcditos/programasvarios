@@ -1,0 +1,3 @@
+from osgeo import gdal
+set_de_datos=gdal.Open("/usr/cbarrios/Descargas/AST_L!T_0030702017151012_20170708105854_29812.hdf")
+g
